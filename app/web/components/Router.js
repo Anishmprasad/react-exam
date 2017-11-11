@@ -4,9 +4,10 @@ import { BrowserRouter as Router,Route,Link,Switch } from 'react-router-dom';
 import HelloWorld from '../containers/Helloworld';
 import Article from '../containers/Article';
 import Articleid from '../containers/Articleid';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-console.log(Article)
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
     <div>
@@ -20,8 +21,11 @@ export default class Home extends Component {
         </nav>
       </header>
     <Switch>
-      <Route path='/' component={HelloWorld}/>
-      <Route path="/article" component={Article}/>
+      {
+        this.props.location.pathname == "/article/" ? <Route exact path='/Article' component={Article}/>
+        : <Route path="/" component={HelloWorld}/> 
+      }
+      <Route path="/" component={HelloWorld}/>
       <Route path="/article/:id" component={Article}/>
     </Switch>
      </div>
@@ -31,6 +35,14 @@ export default class Home extends Component {
 
 const h = () => (<h1 className='center-block text-center'>Hello from HomePage!</h1>)
 
+
+function mapStateToProps(state) {
+  return {
+    state
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Home));
 
 
 
