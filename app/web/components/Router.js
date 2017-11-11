@@ -16,14 +16,14 @@ class Home extends Component {
           <ul className='nav navbar-nav navbar-right'>
             {/* <li><Link to='/'>Home</Link></li>
             <li><Link to='/helloworld'>HelloWorld</Link></li>
-            <li><Link to='/article'>article</Link></li>  */}
+            <li><Link to='/article/1'>article</Link></li>  */}
           </ul>
         </nav>
       </header>
     <Switch>
       {
-        this.props.location.pathname == "/article/" ? <Route exact path='/Article' component={Article}/>
-        : <Route path="/" component={HelloWorld}/> 
+        this.props.location.pathname == "/article" ? <Route exact path='/' component={HelloWorld}/>
+        : <Route path="/Article" component={Article}/> 
       }
       <Route path="/" component={HelloWorld}/>
       <Route path="/article/:id" component={Article}/>
